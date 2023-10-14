@@ -26,6 +26,7 @@
       "@Config/*": ["src/config/*"],
       "@Database/*": ["src/database/*"],
       "@Modules/*": ["src/modules/*"],
+      "@Swagger/*": ["src/swagger/*"],
     },
   }
 }
