@@ -12,12 +12,6 @@ Some amazing description to show my skills
 $ yarn install
 ```
 
-## Sequelize CLI config file generation
-
-```bash
-$ tsc src/database/config/index.ts
-```
-
 ## Running the app
 
 ```bash

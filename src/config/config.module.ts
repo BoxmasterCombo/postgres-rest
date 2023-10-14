@@ -2,8 +2,6 @@ import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 import { EnvironmentVariables } from './config.variables';
 import { Module } from '@nestjs/common';
-import { AppController } from '../app.controller';
-import { AppService } from '../app.service';
 import { ConfigModule } from '@nestjs/config';
 
 export function validate(config: Record<string, unknown>) {
