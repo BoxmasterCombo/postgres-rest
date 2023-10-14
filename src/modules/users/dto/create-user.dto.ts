@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+
 import { UserCreationAttributes } from '../interfaces';
 
 export class CreateUserDto implements UserCreationAttributes {

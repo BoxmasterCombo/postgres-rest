@@ -1,8 +1,9 @@
-import { plainToInstance } from 'class-transformer';
-import { validateSync } from 'class-validator';
-import { EnvironmentVariables } from './config.variables';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { plainToInstance } from 'class-transformer';
+import { validateSync } from 'class-validator';
+
+import { EnvironmentVariables } from './config.variables';
 
 export function validate(config: Record<string, unknown>) {
   const validatedConfig = plainToInstance(EnvironmentVariables, config, {

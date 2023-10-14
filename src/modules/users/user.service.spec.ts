@@ -1,9 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { UserModel } from './user.model';
+import { Test, TestingModule } from '@nestjs/testing';
+
 import { MyTestModule } from '../_tests/test.module';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UserModel } from './user.model';
+import { UserService } from './user.service';
 
 describe('UserService', () => {
   let service: UserService;

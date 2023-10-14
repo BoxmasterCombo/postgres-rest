@@ -7,6 +7,7 @@ import {
   Table,
   Unique,
 } from 'sequelize-typescript';
+
 import { BaseModel } from '../_shared/base.model';
 import { UserAttributes, UserCreationAttributes } from './interfaces';
 

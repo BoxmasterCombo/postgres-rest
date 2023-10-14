@@ -21,6 +21,11 @@
     "lib": [
       "ES2021",
       "esnext.string"
-    ]
+    ],
+    "paths": {
+      "@Config/*": ["src/config/*"],
+      "@Database/*": ["src/database/*"],
+      "@Modules/*": ["src/modules/*"],
+    },
   }
 }
