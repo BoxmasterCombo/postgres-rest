@@ -25,6 +25,7 @@
     "paths": {
       "@Config/*": ["src/config/*"],
       "@Database/*": ["src/database/*"],
+      "@Middlewares/*": ["src/middlewares/*"],
       "@Modules/*": ["src/modules/*"],
       "@Swagger/*": ["src/swagger/*"],
     },
