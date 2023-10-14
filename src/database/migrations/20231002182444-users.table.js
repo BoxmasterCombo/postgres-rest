@@ -38,7 +38,8 @@ module.exports = {
         allowNull: true,
       },
       token: {
-        type: Sequelize.STRING,
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: true,
       },
     });

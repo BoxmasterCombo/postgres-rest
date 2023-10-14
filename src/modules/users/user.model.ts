@@ -2,37 +2,44 @@ import {
   AllowNull,
   Column,
   DataType,
+  Default,
   Index,
   Table,
   Unique,
 } from 'sequelize-typescript';
 import { BaseModel } from '../_shared/base.model';
+import { UserAttributes, UserCreationAttributes } from './interfaces';
 
 @Table({ tableName: 'users' })
-export class UserModel extends BaseModel {
+export class UserModel extends BaseModel<
+  UserAttributes,
+  UserCreationAttributes
+> {
   @AllowNull(false)
-  @Column({ type: DataType.STRING(100) })
+  @Column(DataType.STRING(100))
   firstName: string;
 
   @AllowNull(false)
-  @Column({ type: DataType.STRING(100) })
+  @Column(DataType.STRING(100))
   lastName: string;
 
   @AllowNull(false)
-  @Column({ type: DataType.STRING(100) })
+  @Column(DataType.STRING(100))
   email: string;
 
   @AllowNull
-  @Column({ type: DataType.STRING(30) })
+  @Column(DataType.STRING(30))
   phoneNumber?: string;
 
-  @Column({ type: DataType.STRING, allowNull: true })
+  @AllowNull(false)
+  @Column(DataType.STRING)
   password: string;
 
   @Index
   @AllowNull
   @Unique
-  @Column({ type: DataType.STRING })
+  @Default(DataType.UUIDV4)
+  @Column(DataType.UUID)
   token: string;
 
   // Virtual Columns

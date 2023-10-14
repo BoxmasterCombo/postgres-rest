@@ -40,4 +40,4 @@ lerna-debug.log*
 .env.production
 
 # Sequelize CLI Db config file
-src/database/config/index.js
+#src/database/config/index.js
