@@ -21,6 +21,57 @@ Welcome to the README for PG_REST project! This document provides an overview of
 ## Project Structure
 
 Our project is structured as follows:
+We use [NestJS](https://nestjs.com/) as our framework.
+
+```bash
+postgres-rest/
+├── dist/
+├── node_modules/  
+├── src/  
+│ ├── config/
+│       ├── config.module.ts
+│       ├── config.variables.ts
+│ ├── database/
+│       ├── migrations/
+│       ├── seeders/
+│       ├── database.config.ts
+│       ├── database.module.ts
+│ ├── middlewares/
+│       ├── <middleware-name>.middleware.ts
+│ ├── modules/
+│       ├── _shared/
+│             ├── dto/
+│                   ├── <dto-name>.dto.ts
+│             ├── base.interface.ts
+│             ├── base.model.ts
+│             ├── base.repository.ts
+│       ├── _tests/
+│             ├── test.module.ts
+│       ├── <module-name>/
+│             ├── dto/
+│                   ├── <dto-name>.dto.ts
+│             ├── interfaces/
+│                   ├── <interface-name>.interface.ts
+│             ├── <module-name>.controller.ts
+│             ├── <module-name>.module.ts
+│             ├── <module-name>.service.ts
+│ ├── swagger/
+│       ├── swagger.ts
+│ ├── app.module.ts  
+│ ├── main.ts  
+├── .env 
+├── .env.example
+├── .eslintrc.js 
+├── .gitignore  
+├── .prettierrc  
+├── .sequelizerc  
+├── .nest-cli.json  
+├── .package.json  
+├── README.md
+├── tsconfig.build.json  
+├── tsconfig.json  
+├── yarn.lock  
+```
 
 - `dist/`: Compiled JavaScript files.
 - `node_modules/`: Node.js modules installed via npm.
@@ -79,40 +130,62 @@ $ cp .env.example .env
 
 ## Database Setup
 
+We use PostgreSQL as our database. You can set up the database using the following commands.
+
+- ***You don't need to set `NODE_ENV` variable if you are running migrations or seeds in development mode.***
+
 ### Migrations
+
+If you need to make changes to the database schema, you can use migrations. Migrations are located in the `src/migrations` directory.
+You can set up the database and run migrations using the following commands:
 
 ```bash
 # To create a new migration, use the following command:
-$ yarn run migration:add <migration-name>
+$ yarn migration:add <migration-name>
 
-# To run migrations, use the following command:
-$ yarn run migration:run
+# To run migrations in production environment, use the following command:
+$ NODE_ENV=production yarn migration:run
+$ yarn migration:run #development mode
    
-# To undo migrations, use the following command:
-$ yarn run migration:undo
+# To undo last migration in production environment, use the following command:
+$ NODE_ENV=production yarn migration:undo
+$ yarn migration:undo #development mode
+
+# To run single migration in production environment, use the following command:
+$ NODE_ENV=production yarn migration:undo:name <migration-name>
+$ yarn migration:undo:name <migration-name> #development mode
 ```
 
 ### Seeds
 
-```bash
-# To run seeds, use the following command:
-$ yarn run seed:run
+If you need to populate the database with data, you can use seeds. Seeds are located in the `src/seeds` directory.
+You can set up the database and run seeds using the following commands:
 
-# To undo seeds, use the following command:
-$ yarn run seed:undo
+```bash
+# To run seeds in production environment, use the following command:
+$ NODE_ENV=production yarn seed:run
+$ yarn seed:run #development mode
+
+# To undo last seed in production environment, use the following command:
+$ NODE_ENV=production yarn seed:undo
+$ yarn seed:undo #development mode
+
+# To undo all seeds in production environment, use the following command:
+$ NODE_ENV=production yarn seed:undo:all
+$ yarn seed:undo:all #development mode
 ```
    
 ## Running the app
 
 ```bash
 # development
-$ yarn run start
+$ yarn start
 
 # watch mode
-$ yarn run start:dev
+$ yarn start:dev
 
 # production mode
-$ yarn run start:prod
+$ yarn start:prod
 ```
 
 Your application will be available at http://localhost:5001.  
@@ -122,20 +195,20 @@ Your swagger documentation will be available at http://localhost:5001/docs.
 
 ```bash
 # To run unit tests, use the following command:
-$ yarn run test
+$ yarn test
 
 # To run e2e tests, use the following command:
-$ yarn run test:e2e
+$ yarn test:e2e
 
 # To run test coverage, use the following command:
-$ yarn run test:cov
+$ yarn test:cov
 ```
 
 ## Deployment
 
 1. To build the application, use the following command:
 
-    ```bash
-    yarn run build
-    ```
+```bash
+$ yarn build
+```
 

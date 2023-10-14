@@ -1,4 +1,7 @@
+import * as dotenv from 'dotenv';
 import { Options } from 'sequelize';
+
+dotenv.config();
 
 const environment = process.env.NODE_ENV;
 type DbType = 'development' | 'test' | 'production';

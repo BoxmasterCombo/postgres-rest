@@ -36,8 +36,7 @@ lerna-debug.log*
 
 # ENV
 .env
-.env.staging
-.env.production
+.env.*
 
 # Sequelize CLI Db config file
 #src/database/config/index.js
