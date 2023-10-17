@@ -9,7 +9,7 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 
-import { BaseAttributes } from './base.interface';
+import { BaseAttributes } from '../interfaces/base.interface';
 
 export class BaseModel<T1, T2> extends Model<T1, T2> implements BaseAttributes {
   @PrimaryKey
