@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
   imports: [
     UserModule,
     PassportModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: jwtConstants.expiresIn },

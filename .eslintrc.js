@@ -42,11 +42,14 @@ module.exports = {
               [
                 "^(@Config)(/.*|$)",
                 "^(@Database)(/.*|$)",
+                "^(@Decorators)(/.*|$)",
                 "^(@Emitter)(/.*|$)",
                 "^(@Filters)(/.*|$)",
+                "^(@Guards)(/.*|$)",
                 "^(@Middlewares)(/.*|$)",
                 "^(@Modules)(/.*|$)",
                 "^(@Swagger)(/.*|$)",
+                "^(@Utils)(/.*|$)",
               ],
               [
                 "^\\.\\.(?!/?$)", "^\\.\\./?$",

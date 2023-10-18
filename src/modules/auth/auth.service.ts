@@ -9,6 +9,7 @@ import { compare, hash } from 'bcrypt';
 import { MessageResponse } from '@Modules/_shared/responses/message.response';
 import { LoginDto } from '@Modules/auth/dto/login.dto';
 import { RegisterDto } from '@Modules/auth/dto/register.dto';
+import { IPayloadInterface } from '@Modules/auth/interfaces/payload.interface';
 import { TokenResponse } from '@Modules/auth/responses/token.response';
 import { CreateUserDto } from '@Modules/users/dto/create-user.dto';
 import { UserService } from '@Modules/users/user.service';
@@ -36,7 +37,7 @@ export class AuthService {
       throw new ForbiddenException('Incorrect Email or Password');
     }
 
-    const payload = { id: user.id };
+    const payload: IPayloadInterface = { id: user.id };
 
     return {
       access_token: this.jwtService.sign(payload),
