@@ -27,7 +27,9 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING(100),
-        allowNull: true,
+        allowNull: false,
+        unique: true,
+        index: true,
       },
       phoneNumber: {
         type: Sequelize.STRING(30),
@@ -41,16 +43,15 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: true,
+        unique: true,
+        index: true,
+      },
+      isVerified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false,
       },
     });
-
-    await queryInterface.addConstraint('users', {
-      fields: ['token'],
-      type: 'unique',
-      name: 'user_token',
-    });
-
-    await queryInterface.addIndex('users', ['token']);
   },
 
   async down(queryInterface) {
