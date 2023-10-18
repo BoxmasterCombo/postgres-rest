@@ -1,0 +1,35 @@
+name: CI/CD PostgresRest
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types:
+      - merged
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_EC2_IP }}
+          username: ${{ secrets.AWS_EC2_USERNAME }}
+          key: ${{ secrets.AWS_PRIVATE_KEY_PEM }}
+          script: |
+            cd /home/ubuntu/apps/postgres-rest
+            git reset --hard origin/master
+            git pull
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            yarn
+            yarn build
+            pm2 restart all
+            echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            echo 🚀Deployed successfully🚀
+            echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
