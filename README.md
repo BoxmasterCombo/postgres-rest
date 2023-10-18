@@ -28,6 +28,9 @@ postgres-rest/
 ├── dist/
 ├── node_modules/  
 ├── src/  
+│ ├── bull/
+│       ├── bull.constants.ts
+│       ├── bull.module.ts
 │ ├── config/
 │       ├── config.module.ts
 │       ├── config.variables.ts
