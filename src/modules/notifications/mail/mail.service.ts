@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { AwsSesService } from '@Modules/aws/ses/aws.ses.service';
 import { TemplateNamesEnum } from '@Modules/aws/ses/enums/template-names-enum';
+import { CreateOrderDto } from '@Modules/orders/dto';
 import { UserModel } from '@Modules/users/user.model';
 
 @Injectable()
@@ -58,6 +59,25 @@ export class MailService {
       },
       TemplateData: JSON.stringify({
         subject: `USER: Reset Password`,
+        name: user.name,
+        email: user.email,
+        forgetUrl: `${process.env.APP_PARTICIPANT_URL}/user/reset?token=${user.token}`,
+      }),
+    });
+  }
+
+  async sendOrderConfirmation(
+    orderDto: CreateOrderDto,
+    user: UserModel,
+  ): Promise<void> {
+    return this.awsSesService.sendEmail({
+      Source: this.getSource(),
+      Template: TemplateNamesEnum.OrderSubmitted,
+      Destination: {
+        ToAddresses: [user.email],
+      },
+      TemplateData: JSON.stringify({
+        subject: `Order Confirmation`,
         name: user.name,
         email: user.email,
         forgetUrl: `${process.env.APP_PARTICIPANT_URL}/user/reset?token=${user.token}`,

@@ -1,0 +1,3 @@
+export const USER_REGISTERED = 'USER_REGISTERED';
+
+export const ORDER_SUBMITTED = 'ORDER_SUBMITTED';

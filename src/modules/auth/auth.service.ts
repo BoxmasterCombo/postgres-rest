@@ -3,9 +3,11 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcrypt';
 
+import { USER_REGISTERED } from '@Emitter/emitter.constants';
 import { MessageResponse } from '@Modules/_shared/responses/message.response';
 import { LoginDto } from '@Modules/auth/dto/login.dto';
 import { RegisterDto } from '@Modules/auth/dto/register.dto';
@@ -19,6 +21,7 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
+    private eventEmitter: EventEmitter2,
   ) {}
 
   async login(body: LoginDto): Promise<TokenResponse> {
@@ -50,7 +53,8 @@ export class AuthService {
 
     const user = await this.userService.create(userPayload);
 
-    // TODO: V2 send email via emitter
+    // Send email via emitter
+    this.eventEmitter.emit(USER_REGISTERED, { user });
 
     return new MessageResponse(`We've sent verification email`);
   }
