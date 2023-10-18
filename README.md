@@ -36,6 +36,8 @@ postgres-rest/
 │       ├── seeders/
 │       ├── database.config.ts
 │       ├── database.module.ts
+│ ├── decorators/
+│       ├── <decorator-name>.decorator.ts
 │ ├── emitter/
 │       ├── emitter.module.ts
 │ ├── filters/
@@ -62,6 +64,9 @@ postgres-rest/
 │       ├── index.ts
 │ ├── swagger/
 │       ├── swagger.ts
+│ ├── utils/
+│       ├── <util-name>.ts
+│       ├── index.ts
 │ ├── app.module.ts  
 │ ├── main.ts  
 ├── .dockerignore

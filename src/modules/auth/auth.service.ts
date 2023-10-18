@@ -3,12 +3,15 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcrypt';
 
+import { USER_REGISTERED } from '@Emitter/emitter.constants';
 import { MessageResponse } from '@Modules/_shared/responses/message.response';
 import { LoginDto } from '@Modules/auth/dto/login.dto';
 import { RegisterDto } from '@Modules/auth/dto/register.dto';
+import { IPayloadInterface } from '@Modules/auth/interfaces/payload.interface';
 import { TokenResponse } from '@Modules/auth/responses/token.response';
 import { CreateUserDto } from '@Modules/users/dto/create-user.dto';
 import { UserService } from '@Modules/users/user.service';
@@ -18,6 +21,7 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
+    private eventEmitter: EventEmitter2,
   ) {}
 
   async login(body: LoginDto): Promise<TokenResponse> {
@@ -36,7 +40,7 @@ export class AuthService {
       throw new ForbiddenException('Incorrect Email or Password');
     }
 
-    const payload = { id: user.id };
+    const payload: IPayloadInterface = { id: user.id };
 
     return {
       access_token: this.jwtService.sign(payload),
@@ -49,7 +53,8 @@ export class AuthService {
 
     const user = await this.userService.create(userPayload);
 
-    // TODO: V2 send email via emitter
+    // Send email via emitter
+    this.eventEmitter.emit(USER_REGISTERED, { user });
 
     return new MessageResponse(`We've sent verification email`);
   }

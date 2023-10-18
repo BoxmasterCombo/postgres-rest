@@ -5,6 +5,7 @@ export function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
     .setTitle('Postgres NestJS API')
     .setDescription('Postgres NestJS API description')
+    .addBearerAuth()
     .setVersion('1.0')
     .build();
 

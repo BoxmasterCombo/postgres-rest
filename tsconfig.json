@@ -25,11 +25,14 @@
     "paths": {
       "@Config/*": ["src/config/*"],
       "@Database/*": ["src/database/*"],
+      "@Decorators/*": ["src/decorators/*"],
       "@Emitter/*": ["src/emitter/*"],
       "@Filters/*": ["src/filters/*"],
+      "@Guards/*": ["src/guards/*"],
       "@Middlewares/*": ["src/middlewares/*"],
       "@Modules/*": ["src/modules/*"],
       "@Swagger/*": ["src/swagger/*"],
+      "@Utils/*": ["src/utils/*"],
     },
   }
 }
