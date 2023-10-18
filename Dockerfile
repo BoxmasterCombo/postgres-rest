@@ -10,7 +10,8 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install dependencies
-RUN rm -rf node_modules dist
+RUN rm -rf node_modules
+RUN rm -rf dist
 RUN yarn
 
 # Expose the port that the application listens on.
