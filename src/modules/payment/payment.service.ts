@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
 import {
+  BitcoinGateway,
   CreditCardGateway,
   PAYMENT_METHOD,
   PaymentGateway,
+  PayPalGateway,
 } from './payment.gateway';
 
 @Injectable()
@@ -11,13 +13,7 @@ export class PaymentService {
   private paymentGateways: Record<string, PaymentGateway> = {};
 
   constructor() {
-    /**
-     * Register Credit Card payment gateway
-     **/
-    this.registerPaymentGateway(
-      PAYMENT_METHOD.CREDIT_CARD,
-      new CreditCardGateway(),
-    );
+    this.registerPaymentMethods();
   }
 
   public registerPaymentGateway(
@@ -35,5 +31,19 @@ export class PaymentService {
     }
 
     await gateway.processPayment(order);
+  }
+
+  /**
+   * Register payment gateways
+   * @private
+   * @returns {void}
+   */
+  private registerPaymentMethods() {
+    this.registerPaymentGateway(
+      PAYMENT_METHOD.CREDIT_CARD,
+      new CreditCardGateway(),
+    );
+    this.registerPaymentGateway(PAYMENT_METHOD.PAYPAL, new PayPalGateway());
+    this.registerPaymentGateway(PAYMENT_METHOD.Bitcoin, new BitcoinGateway());
   }
 }
