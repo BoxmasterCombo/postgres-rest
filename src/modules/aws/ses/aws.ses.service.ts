@@ -12,6 +12,8 @@ import {
 } from '@aws-sdk/client-ses';
 
 import { CreateOrUpdateTemplateDto } from '@Modules/aws/ses/dto/create-or-update-template-dto';
+import { TemplateNamesEnum } from '@Modules/aws/ses/enums/template-names-enum';
+import { Templates } from '@Modules/notifications/mail/templates/templates';
 
 @Injectable()
 export class AwsSesService {
@@ -27,45 +29,24 @@ export class AwsSesService {
       },
     });
 
-    // Create or update SES templates
-    // Promise.all([
-    //   this.createOrUpdateTemplate({
-    //     TemplateName: TemplateNamesEnum.PrtInvitation,
-    //     SubjectPart: ParticipantInvitationSettingsDefault.subject,
-    //     HtmlPart: Templates.participantInvitation,
-    //   }),
-    //   this.createOrUpdateTemplate({
-    //     TemplateName: TemplateNamesEnum.PrtAcceptance,
-    //     SubjectPart: ParticipantAcceptanceSettingsDefault.subject,
-    //     HtmlPart: Templates.participantAcceptance,
-    //   }),
-    //   this.createOrUpdateTemplate({
-    //     TemplateName: TemplateNamesEnum.PrtReset,
-    //     SubjectPart: JSON.stringify('{{subject}}'),
-    //     HtmlPart: Templates.participantResetTemplate,
-    //   }),
-    //   this.createOrUpdateTemplate({
-    //     TemplateName: TemplateNamesEnum.StudyAdminInvitation,
-    //     SubjectPart: JSON.stringify('{{subject}}'),
-    //     HtmlPart: Templates.studyAdminInvitationTemplate,
-    //   }),
-    //   // --- notification templates ---
-    //   this.createOrUpdateTemplate({
-    //     TemplateName: TemplateNamesEnum.NewMessageNotification,
-    //     SubjectPart: JSON.stringify('{{subject}}'),
-    //     HtmlPart: Templates.newMessageNotificationTemplate,
-    //   }),
-    //   this.createOrUpdateTemplate({
-    //     TemplateName: TemplateNamesEnum.NewQuestNotification,
-    //     SubjectPart: JSON.stringify('{{subject}}'),
-    //     HtmlPart: Templates.newQuestNotificationTemplate,
-    //   }),
-    //   this.createOrUpdateTemplate({
-    //     TemplateName: TemplateNamesEnum.QuestSchedule,
-    //     SubjectPart: JSON.stringify('{{subject}}'),
-    //     HtmlPart: Templates.questScheduleTemplate,
-    //   }),
-    // ]);
+    // Creating or Updating SES Templates
+    Promise.all([
+      this.createOrUpdateTemplate({
+        TemplateName: TemplateNamesEnum.UserInvitation,
+        SubjectPart: JSON.stringify('{{subject}}'),
+        HtmlPart: Templates.userInvitation,
+      }),
+      this.createOrUpdateTemplate({
+        TemplateName: TemplateNamesEnum.UserAcceptance,
+        SubjectPart: JSON.stringify('{{subject}}'),
+        HtmlPart: Templates.userAcceptance,
+      }),
+      this.createOrUpdateTemplate({
+        TemplateName: TemplateNamesEnum.UserReset,
+        SubjectPart: JSON.stringify('{{subject}}'),
+        HtmlPart: Templates.userResetTemplate,
+      }),
+    ]);
   }
 
   async createOrUpdateTemplate(

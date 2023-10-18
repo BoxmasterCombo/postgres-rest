@@ -1,14 +1,9 @@
 import { Module } from '@nestjs/common';
 
-import {
-  EmailController,
-  PushNotificationController,
-  SMSController,
-} from '@Modules/notifications/controllers';
-import { NotificationService } from '@Modules/notifications/notification.service';
+import { MailModule } from '@Modules/notifications/mail/mail.module';
 
 @Module({
-  controllers: [EmailController, PushNotificationController, SMSController],
-  providers: [NotificationService],
+  imports: [MailModule],
+  exports: [MailModule],
 })
 export class NotificationModule {}
