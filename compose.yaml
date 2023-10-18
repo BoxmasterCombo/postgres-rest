@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+
+  api:
+    container_name: "api"
+    build:
+      context: .
+    ports:
+      - "5001:5001"
+    env_file: .env
+    volumes:
+      - ./:/usr/src/app
+    depends_on:
+      - pg14
+
+  pg14:
+    container_name: "pg_db"
+    image: postgres:14.0-alpine
+    restart: always
+    tty: true
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres-rest
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
+  redis:
+    driver: local
