@@ -84,4 +84,8 @@ export class MailService {
       }),
     });
   }
+
+  async sendMail(data: any): Promise<void> {
+    return this.awsSesService.sendEmail(data);
+  }
 }

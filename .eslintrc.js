@@ -40,6 +40,7 @@ module.exports = {
             groups: [
               ["^@nestjs/", "^@?\\w"],
               [
+                "^(@Bull)(/.*|$)",
                 "^(@Config)(/.*|$)",
                 "^(@Database)(/.*|$)",
                 "^(@Decorators)(/.*|$)",

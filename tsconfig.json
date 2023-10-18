@@ -23,6 +23,7 @@
       "esnext.string"
     ],
     "paths": {
+      "@Bull/*": ["src/bull/*"],
       "@Config/*": ["src/config/*"],
       "@Database/*": ["src/database/*"],
       "@Decorators/*": ["src/decorators/*"],
