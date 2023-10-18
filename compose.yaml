@@ -13,6 +13,7 @@ services:
       - ./:/usr/src/app
     depends_on:
       - pg14
+      - pg_redis
 
   pg14:
     container_name: "pg_db"
@@ -27,6 +28,14 @@ services:
     volumes:
       - ./db:/docker-entrypoint-initdb.d/
       - db:/var/lib/postgresql/data
+
+  pg_redis:
+    container_name: "pg_redis"
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis:/data
 
 volumes:
   db:
