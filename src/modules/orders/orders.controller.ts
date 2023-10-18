@@ -1,7 +1,7 @@
 import { Body, Controller, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { SesService } from '@Modules/aws/ses/ses.service';
+import { AwsSesService } from '@Modules/aws/ses/aws.ses.service';
 import { CreateOrderDto, UpdateOrderDto } from '@Modules/orders/dto';
 
 import { OrdersService } from './orders.service';
@@ -11,7 +11,7 @@ import { OrdersService } from './orders.service';
 export class OrdersController {
   constructor(
     private ordersService: OrdersService,
-    private sesService: SesService,
+    private sesService: AwsSesService,
   ) {}
 
   @Post()
@@ -20,7 +20,7 @@ export class OrdersController {
     const createdOrder: any = await this.ordersService.submitOrder(body);
 
     // Send email to customer
-    await this.sesService.sendEmail({});
+    // await this.sesService.sendEmail({});
 
     // Return created order
     return createdOrder;
@@ -32,7 +32,7 @@ export class OrdersController {
     const updateOrder: any = await this.ordersService.updateOrder(body);
 
     // Send email to customer
-    await this.sesService.sendEmail({});
+    // await this.sesService.sendEmail({});
 
     // Return updated order
     return updateOrder;

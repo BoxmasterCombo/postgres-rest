@@ -1,11 +1,11 @@
 import { Global, Module } from '@nestjs/common';
 
-import { S3Module } from '@Modules/aws/s3/s3.module';
-import { SesModule } from '@Modules/aws/ses/ses.module';
+import { AwsS3Module } from '@Modules/aws/s3/aws.s3.module';
+import { AwsSesModule } from '@Modules/aws/ses/aws.ses.module';
 
 @Global()
 @Module({
-  imports: [S3Module, SesModule],
-  exports: [S3Module, SesModule],
+  imports: [AwsS3Module, AwsSesModule],
+  exports: [AwsS3Module, AwsSesModule],
 })
 export class AwsModule {}
