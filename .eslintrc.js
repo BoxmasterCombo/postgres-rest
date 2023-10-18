@@ -48,6 +48,7 @@ module.exports = {
                 "^(@Guards)(/.*|$)",
                 "^(@Middlewares)(/.*|$)",
                 "^(@Modules)(/.*|$)",
+                "^(@SocketGateway)(/.*|$)",
                 "^(@Swagger)(/.*|$)",
                 "^(@Utils)(/.*|$)",
               ],
