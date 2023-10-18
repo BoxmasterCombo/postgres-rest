@@ -23,11 +23,19 @@
       "esnext.string"
     ],
     "paths": {
+      "@Bull/*": ["src/bull/*"],
       "@Config/*": ["src/config/*"],
       "@Database/*": ["src/database/*"],
+      "@Decorators/*": ["src/decorators/*"],
+      "@Emitter/*": ["src/emitter/*"],
+      "@Filters/*": ["src/filters/*"],
+      "@Guards/*": ["src/guards/*"],
+      "@Interceptors/*": ["src/interceptors/*"],
       "@Middlewares/*": ["src/middlewares/*"],
       "@Modules/*": ["src/modules/*"],
+      "@SocketGateway/*": ["src/socket-gateway/*"],
       "@Swagger/*": ["src/swagger/*"],
+      "@Utils/*": ["src/utils/*"],
     },
   }
 }

@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { WhereOptions } from 'sequelize';
 
 import { UserAttributes } from '@Modules/users/interfaces';
+import { UserScopeEnum } from '@Modules/users/user.scope';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserModel } from './user.model';
@@ -41,5 +42,9 @@ export class UserService {
 
   async destroy(where: WhereOptions<UserAttributes>): Promise<number> {
     return this.userModel.destroy({ where });
+  }
+
+  async getUnverifiedUsers(): Promise<Array<Pick<UserModel, 'id' | 'email'>>> {
+    return this.userModel.scope(UserScopeEnum.unverified).findAll();
   }
 }

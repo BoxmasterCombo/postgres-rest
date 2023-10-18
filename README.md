@@ -28,6 +28,9 @@ postgres-rest/
 ├── dist/
 ├── node_modules/  
 ├── src/  
+│ ├── bull/
+│       ├── bull.constants.ts
+│       ├── bull.module.ts
 │ ├── config/
 │       ├── config.module.ts
 │       ├── config.variables.ts
@@ -36,6 +39,12 @@ postgres-rest/
 │       ├── seeders/
 │       ├── database.config.ts
 │       ├── database.module.ts
+│ ├── decorators/
+│       ├── <decorator-name>.decorator.ts
+│ ├── emitter/
+│       ├── emitter.module.ts
+│ ├── filters/
+│       ├── http-exception.filter.ts
 │ ├── middlewares/
 │       ├── <middleware-name>.middleware.ts
 │ ├── modules/
@@ -55,16 +64,23 @@ postgres-rest/
 │             ├── <module-name>.controller.ts
 │             ├── <module-name>.module.ts
 │             ├── <module-name>.service.ts
+│       ├── index.ts
 │ ├── swagger/
 │       ├── swagger.ts
+│ ├── utils/
+│       ├── <util-name>.ts
+│       ├── index.ts
 │ ├── app.module.ts  
 │ ├── main.ts  
+├── .dockerignore
 ├── .env 
 ├── .env.example
 ├── .eslintrc.js 
 ├── .gitignore  
 ├── .prettierrc  
 ├── .sequelizerc  
+├── compose.yaml  
+├── Dockerfile  
 ├── .nest-cli.json  
 ├── .package.json  
 ├── README.md

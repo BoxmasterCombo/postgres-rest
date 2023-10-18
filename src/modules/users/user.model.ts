@@ -4,13 +4,17 @@ import {
   DataType,
   Default,
   Index,
+  Scopes,
   Table,
   Unique,
 } from 'sequelize-typescript';
 
+import { UserScope } from '@Modules/users/user.scope';
+
 import { BaseModel } from '../_shared/models/base.model';
 import { UserAttributes, UserCreationAttributes } from './interfaces';
 
+@Scopes(UserScope)
 @Table({ tableName: 'users' })
 export class UserModel extends BaseModel<
   UserAttributes,
@@ -24,6 +28,8 @@ export class UserModel extends BaseModel<
   @Column(DataType.STRING(100))
   lastName: string;
 
+  @Index
+  @Unique
   @AllowNull(false)
   @Column(DataType.STRING(100))
   email: string;
@@ -37,11 +43,16 @@ export class UserModel extends BaseModel<
   password: string;
 
   @Index
-  @AllowNull
   @Unique
+  @AllowNull(false)
   @Default(DataType.UUIDV4)
   @Column(DataType.UUID)
   token: string;
+
+  @AllowNull(false)
+  @Default(false)
+  @Column(DataType.BOOLEAN)
+  isVerified: boolean;
 
   // Virtual Columns
   @Column(DataType.VIRTUAL)
