@@ -36,6 +36,10 @@ postgres-rest/
 │       ├── seeders/
 │       ├── database.config.ts
 │       ├── database.module.ts
+│ ├── emitter/
+│       ├── emitter.module.ts
+│ ├── filters/
+│       ├── http-exception.filter.ts
 │ ├── middlewares/
 │       ├── <middleware-name>.middleware.ts
 │ ├── modules/
@@ -55,16 +59,20 @@ postgres-rest/
 │             ├── <module-name>.controller.ts
 │             ├── <module-name>.module.ts
 │             ├── <module-name>.service.ts
+│       ├── index.ts
 │ ├── swagger/
 │       ├── swagger.ts
 │ ├── app.module.ts  
 │ ├── main.ts  
+├── .dockerignore
 ├── .env 
 ├── .env.example
 ├── .eslintrc.js 
 ├── .gitignore  
 ├── .prettierrc  
 ├── .sequelizerc  
+├── compose.yaml  
+├── Dockerfile  
 ├── .nest-cli.json  
 ├── .package.json  
 ├── README.md

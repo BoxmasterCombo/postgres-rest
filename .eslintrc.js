@@ -42,6 +42,8 @@ module.exports = {
               [
                 "^(@Config)(/.*|$)",
                 "^(@Database)(/.*|$)",
+                "^(@Emitter)(/.*|$)",
+                "^(@Filters)(/.*|$)",
                 "^(@Middlewares)(/.*|$)",
                 "^(@Modules)(/.*|$)",
                 "^(@Swagger)(/.*|$)",
