@@ -47,6 +47,7 @@ module.exports = {
                 "^(@Emitter)(/.*|$)",
                 "^(@Filters)(/.*|$)",
                 "^(@Guards)(/.*|$)",
+                "^(@Interceptors)(/.*|$)",
                 "^(@Middlewares)(/.*|$)",
                 "^(@Modules)(/.*|$)",
                 "^(@SocketGateway)(/.*|$)",
