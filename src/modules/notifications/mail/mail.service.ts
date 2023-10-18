@@ -35,7 +35,7 @@ export class MailService {
     });
   }
 
-  async sendUserAcceptance(user: UserModel): Promise<void> {
+  async sendUserAcceptance(user: Pick<UserModel, 'email'>): Promise<void> {
     return this.awsSesService.sendEmail({
       Source: this.getSource(),
       Template: TemplateNamesEnum.UserAcceptance,
