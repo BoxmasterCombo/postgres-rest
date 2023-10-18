@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { DynamicModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
@@ -21,14 +21,9 @@ export function validate(config: Record<string, unknown>) {
   return validatedConfig;
 }
 
-@Module({
-  imports: [
-    ConfigModule.forRoot({
-      envFilePath: '.env',
-      isGlobal: true,
-      cache: true,
-      validate,
-    }),
-  ],
-})
-export class MyConfigModule {}
+export const MyConfigModule: DynamicModule = ConfigModule.forRoot({
+  envFilePath: '.env',
+  isGlobal: true,
+  cache: true,
+  validate,
+});

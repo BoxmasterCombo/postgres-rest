@@ -1,4 +1,4 @@
-import { BaseAttributes } from '../../_shared/base.interface';
+import { BaseAttributes } from '../../_shared/interfaces/base.interface';
 
 export interface UserAttributes extends BaseAttributes {
   firstName: string;
