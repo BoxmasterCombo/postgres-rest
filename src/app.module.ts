@@ -7,9 +7,16 @@ import { MyEmitterModule } from '@Emitter/emitter.module';
 import { HttpExceptionFilter } from '@Filters/http-exception.filter';
 import { LoggingMiddleware } from '@Middlewares/logging.midlleware';
 import { Modules } from '@Modules/index';
+import { SocketGatewayModule } from '@SocketGateway/socket-gateway.module';
 
 @Module({
-  imports: [MyConfigModule, DatabaseModule, MyEmitterModule, ...Modules],
+  imports: [
+    MyConfigModule,
+    DatabaseModule,
+    MyEmitterModule,
+    SocketGatewayModule,
+    ...Modules,
+  ],
   providers: [
     {
       provide: APP_FILTER,
